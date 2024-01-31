@@ -36,16 +36,15 @@ esac
 set -C
 set -e
 
-if test "$mkdirp" ; then
 umask 022
+
+if test "$mkdirp" ; then
 case "$2" in
 */*) mkdir -p "${dst%/*}" ;;
 esac
 fi
 
 trap 'rm -f "$tmp"' EXIT INT QUIT TERM HUP
-
-umask 077
 
 if test "$symlink" ; then
 ln -s "$1" "$tmp"
